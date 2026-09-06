@@ -10,3 +10,4 @@ pyjwt>=2.8.0
 python-multipart>=0.0.6
 numpy>=1.27.0
 pandas>=2.0.0
+xgboost>=1.7.0
