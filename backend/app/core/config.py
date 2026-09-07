@@ -46,7 +46,7 @@ class Settings(BaseSettings):
     DUCKDB_PATH: str = ":memory:"  # Or file path for persistence
     
     # Firebase configuration
-    FIREBASE_PROJECT_ID: Optional[str] = None
+    FIREBASE_PROJECT_ID: Optional[str] = "smart-market-watchlist-89489"
     FIREBASE_CREDENTIALS_PATH: Optional[str] = None
     USE_DEV_AUTH_FALLBACK: bool = True
     
