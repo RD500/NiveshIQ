@@ -85,7 +85,7 @@ class MarketAnomalyXGBoostModel:
         """
         if not self.model:
             # Fallback if model is missing
-            return {"predicted_score": 15.0, "confidence": 0.8}
+            return {"predicted_score": 15.0, "tier": "NORMAL", "confidence": 0.8}
 
         df_input = pd.DataFrame([{
             "vol_z_score": float(feature_dict.get("vol_z_score", 1.0)),

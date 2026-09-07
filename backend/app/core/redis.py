@@ -128,7 +128,7 @@ class RedisClientWrapper:
                 settings.REDIS_URL,
                 decode_responses=True,
                 socket_timeout=2.0,
-                connect_timeout=2.0
+                socket_connect_timeout=2.0
             )
             await r.ping()
             self.client = r

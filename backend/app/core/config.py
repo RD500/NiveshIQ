@@ -1,5 +1,7 @@
 import os
-from typing import List, Optional
+import json
+from typing import List, Optional, Any
+from pydantic import field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
@@ -16,6 +18,21 @@ class Settings(BaseSettings):
     
     # CORS
     ALLOWED_ORIGINS: List[str] = ["*"]
+    
+    @field_validator("ALLOWED_ORIGINS", mode="before")
+    @classmethod
+    def parse_allowed_origins(cls, v: Any) -> List[str]:
+        if isinstance(v, str):
+            v = v.strip()
+            if v == "*":
+                return ["*"]
+            if v.startswith("[") and v.endswith("]"):
+                try:
+                    return json.loads(v)
+                except Exception:
+                    pass
+            return [origin.strip() for origin in v.split(",") if origin.strip()]
+        return v
     
     # Redis configuration
     REDIS_URL: str = "redis://localhost:6379/0"
